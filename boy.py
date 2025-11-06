@@ -180,3 +180,8 @@ class Boy:
 
     def get_bb(self):
         return self.x - 20, self.y - 40, self.x + 20, self.y + 40
+    
+    def handle_collision(self, group, other):   # 그룹, 상대방
+        if group == 'boy:ball':
+            self.ball_count += 1
+            # game_world.remove_object(other)  # 안좋은 습관. 자신의 행동에 대해서만 하는 것이 좋음
