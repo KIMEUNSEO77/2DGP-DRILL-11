@@ -48,7 +48,6 @@ def init():
 
 
 
-
 def update():
     game_world.update()
     game_world.handle_collisions()
