@@ -25,6 +25,9 @@ def init():
     global boy
     zombies = [Zombie() for i in range(4)]
     game_world.add_objects(zombies, 1)
+    for zombie in zombies:
+        game_world.add_collision_pair('zombie:ball', zombie, None)
+
     grass = Grass()
     game_world.add_object(grass, 0)
     game_world.add_collision_pair('grass:ball', grass, None)
