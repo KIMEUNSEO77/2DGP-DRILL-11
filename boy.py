@@ -188,3 +188,5 @@ class Boy:
         if group == 'boy:ball':
             self.ball_count += 1
             # game_world.remove_object(other)  # 안좋은 습관. 자신의 행동에 대해서만 하는 것이 좋음
+        if group == 'boy:zombie':
+            game_framework.quit()   # 게임 종료
