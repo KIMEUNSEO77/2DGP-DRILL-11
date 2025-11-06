@@ -45,3 +45,5 @@ def collide(a, b):
     if bottom_a > top_b: return False
 
     return True   # 충돌 발생
+
+collision_pairs = {} # (a,b) 쌍의 충돌 상태를 저장하는 딕셔너리
