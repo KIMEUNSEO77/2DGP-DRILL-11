@@ -33,6 +33,7 @@ class Zombie:
         self.load_images()
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1,1])
+        self.smalled = False    # 작아졌는지
 
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
@@ -47,9 +48,15 @@ class Zombie:
 
     def draw(self):
         if self.dir < 0:
-            Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200, 200)
+            if self.smalled == True:
+                Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y-50, 100, 100)
+            else:
+                Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200, 200)
         else:
-            Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200, 200)
+            if self.smalled == True:
+                Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y-50, 100, 100)
+            else:
+                Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200, 200)
         draw_rectangle(*self.get_bb())
 
     def handle_event(self, event):
@@ -63,6 +70,8 @@ class Zombie:
 
     def handle_collision(self, group, other):
         if group == 'zombie:ball':
-            #game_world.remove_object(self)
-            print("Zombie Hit!")
+            if self.smalled == False:
+                self.smalled = True
+            elif self.smalled == True:
+                game_world.remove_object(self)
 

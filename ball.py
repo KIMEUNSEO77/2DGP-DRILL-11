@@ -40,4 +40,5 @@ class Ball:
 
         elif group == 'grass:ball':
             self.stopped = True
+            game_world.remove_collision_object(self)
 
