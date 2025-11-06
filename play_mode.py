@@ -33,12 +33,19 @@ def init():
     # 바닥에 공 배치
     global balls
     balls = [Ball(random.randint(200, 1600), 60, 0) for _ in range(20)]
-    game_world.add_object(balls, 1)
+    game_world.add_objects(balls, 1)
 
 
 
 def update():
     game_world.update()
+    # boy와 ball 간의 충돌을 체크
+    for ball in balls.copy():   # balls의 복사본
+        if game_world.collide(boy, ball):
+            print("COLLISION! ball")
+            boy.ball_count += 1
+            game_world.remove_object(ball)
+            balls.remove(ball)   # 원본을 지우고, 그 다음에는 원본을 지운것을 copy하여 안전하게 삭제
 
 
 def draw():
