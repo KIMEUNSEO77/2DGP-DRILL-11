@@ -26,7 +26,7 @@ def init():
 
     grass = Grass()
     game_world.add_object(grass, 0)
-    game_world.add_collision_pair('grass:grass', grass, None)
+    game_world.add_collision_pair('grass:ball', grass, None)
 
     boy = Boy()
     game_world.add_object(boy, 1)
@@ -38,6 +38,7 @@ def init():
     game_world.add_collision_pair('boy:ball',boy, None)   # boy 중복 방지
     for ball in balls:
         game_world.add_collision_pair('boy:ball', None, ball)
+        #game_world.add_collision_pair('grass:ball', None, ball)
 
 
 
