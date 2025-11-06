@@ -15,3 +15,6 @@ class Grass:
     def get_bb(self):
         return 0, 0, 1600, 60
 
+    def handle_collision(self, group, other):
+        if group == 'grass:ball':
+            pass
