@@ -64,9 +64,15 @@ class Zombie:
 
     def get_bb(self):
         if self.dir == 1:
-            return self.x - 80, self.y - 100, self.x + 60, self.y + 80
+            if self.smalled == False:
+                return self.x - 80, self.y - 100, self.x + 60, self.y + 80
+            elif self.smalled == True:
+                return self.x - 40, self.y - 100, self.x + 40, self.y - 10
         else:
-            return self.x - 60, self.y - 100, self.x + 80, self.y + 80
+            if self.smalled == False:
+                return self.x - 60, self.y - 100, self.x + 80, self.y + 80
+            elif self.smalled == True:
+                return self.x - 40, self.y - 100, self.x + 40, self.y - 10
 
     def handle_collision(self, group, other):
         if group == 'zombie:ball':
