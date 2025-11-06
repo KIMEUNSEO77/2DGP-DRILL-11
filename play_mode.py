@@ -34,6 +34,10 @@ def init():
     global balls
     balls = [Ball(random.randint(200, 1600), 60, 0) for _ in range(20)]
     game_world.add_objects(balls, 1)
+    game_world.add_collision_pair('boy:ball',boy, None)   # boy 중복 방지
+    for ball in balls:
+        game_world.add_collision_pair('boy:ball', None, ball)
+
 
 
 
